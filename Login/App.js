@@ -1,64 +1,21 @@
 import { StatusBar } from "expo-status-bar";
 import { StyleSheet, Text, View, TextInput, Button } from "react-native";
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
-export default function App({ navigation }) {
+import Login from "./Screen/Login";
+import Dki from "./Screen/Dki";
+import ForgetMK from "./Screen/ForgetMK";
+export default function App() {
+  const Stack = createNativeStackNavigator();
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Login</Text>
-      <View>
-        <TextInput style={styles.textInput} placeholder="User Name" />
-      </View>
-      <View>
-        <TextInput style={styles.textInput} placeholder="Password" />
-      </View>
-      <View style={styles.button}>
-        <Button title="Login" onPress={() => navigation.navigate("Details")} />
-      </View>
-      <View style={styles.textBox}>
-        <Text style={styles.text}>Forget Password?</Text>
-        <Text style={styles.text}>Register?</Text>
-      </View>
-    </View>
+    <NavigationContainer>
+      <Stack.Navigator initialRouteName="Login">
+        <Stack.Screen name="Home" component={Home} />
+        <Stack.Screen name="Login" component={Login} />
+        <Stack.Screen name="Register" component={Dki} />
+        <Stack.Screen name="Register" component={ForgetMK} />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-  },
-  textInput: {
-    padding: 15,
-    height: 60,
-    width: 350,
-    fontSize: 20,
-    borderWidth: 1,
-    marginBottom: 20,
-    color: "black",
-  },
-  label: {
-    fontSize: 20,
-  },
-  title: {
-    color: "black",
-    fontSize: 50,
-    margin: 60,
-  },
-  button: {
-    width: 350,
-    fontSize: 50,
-    height: 60,
-  },
-  textBox: {
-    marginTop: 100,
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-  },
-  text: {
-    fontSize: 17,
-    color: "#06bcee",
-    marginBottom: 20,
-  },
-});
